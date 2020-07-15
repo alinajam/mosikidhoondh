@@ -1,0 +1,9 @@
+{% extends "index.html" %}
+{% block searchresults %}
+<h1>the artist's songs</h1>
+<ul>
+    {% for track in results['tracks'][:10] %}
+    <li>{{track['name']}}</li>
+    {% endfor %}
+</ul> 
+{% endblock %}
