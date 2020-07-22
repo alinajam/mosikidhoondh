@@ -1,0 +1,16 @@
+{% extends "index.html" %}
+{% block showplaylist %}
+<h1>songs added</h1>
+<ul>
+    {% for song in playlist %}
+    <li>{{song}}</li>
+    {% endfor %}
+</ul> 
+{% endblock %}
+
+<!--
+<audio
+    controls
+    src="{{song}}">
+</audio>
+-->
