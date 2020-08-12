@@ -8,3 +8,7 @@ def counter_cosine_similarity(c1, c2):
     magA = math.sqrt(sum(c1.get(k, 0)**2 for k in terms))
     magB = math.sqrt(sum(c2.get(k, 0)**2 for k in terms))
     return dotprod / (magA * magB)
+
+
+
+

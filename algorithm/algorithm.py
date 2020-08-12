@@ -14,6 +14,28 @@ from find_artist import find_artist
 import numpy
 import sklearn
 from sklearn.metrics import mean_squared_error
+from foreigntracks import findforeigntracks
+
 
 #so here we need to implement artist_matching_songs, find_artist together to generate
 #similar songs (from Pakistani artists rn) for a given, chosen song by a Notemad user.
+client_id = '85725aa023e545729e6630b2a369cf90'
+client_secret = '1abf0e31be774f2d9fb434adb538ae87'
+client_credentials_manager = SpotifyClientCredentials(client_id, client_secret)
+sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+
+foreigntracks = findforeigntracks('Pakistan')
+print('enter artist')
+
+artist = input()
+searchbynameresult = sp.search(artist, type='artist')
+artistitems = searchbynameresult['artists']['items']
+artist = artistitems[0]
+artist_uri = artist['uri']
+trackresults = sp.artist_top_tracks(artist_uri)
+
+print(trackresults)
+
+
+
+#find_artist(inputsong, findforeigntracks('Pakistan'))

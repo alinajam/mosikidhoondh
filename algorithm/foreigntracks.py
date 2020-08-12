@@ -12,6 +12,7 @@ sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(client_
 
 
 foreigntracks = []
+foreignartists = []
 playliststochoosefrom = []
 country = ''
 name = ''
@@ -19,15 +20,19 @@ name = ''
 def findforeigntracks(country):
     rawresults = sp.search(q='playlist:country', type='playlist', limit=2)
     playlisturls = rawresults['playlists']['items']
+
     for i in range(0, len(playlisturls)):
         playliststochoosefrom.append(playlisturls[i]['id'])
+
     for playlist in playliststochoosefrom:
         tracksfromplaylist = sp.playlist_tracks(playlist, limit=3)
         for i in range(0, len(playliststochoosefrom)):
             foreigntracks.append(tracksfromplaylist['items'][i]['track']['id'])
-    print(foreigntracks)
+            foreignartists.append(tracksfromplaylist['items'][i]['artist'['id']])
 
-findforeigntracks('India')
+    return foreigntracks, foreignartists
+
+findforeigntracks('Pakistan')
 
 def getAlbums(name):
     result = sp.search(q='artist:' + name)  # search query
@@ -43,5 +48,6 @@ def getAlbums(name):
     print(album_names)
 
 
-getAlbums('the Strokes')
+
+
 
