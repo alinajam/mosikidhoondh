@@ -44,4 +44,4 @@ for fa in foreignartists:
     simratio = find_artist(artist, fa)
     simratios[fa].append(simratio)
 
-return simratios
+print(simratios)

@@ -18,7 +18,7 @@ country = ''
 name = ''
 
 def findforeigntracks(country):
-    rawresults = sp.search(q='playlist:country', type='playlist', limit=2)
+    rawresults = sp.search(q=country + ' Music', type='playlist', limit=3)
     playlisturls = rawresults['playlists']['items']
 
     for i in range(0, len(playlisturls)):
@@ -32,20 +32,20 @@ def findforeigntracks(country):
 
     return foreigntracks
 
-findforeigntracks('Pakistan')
+#findforeigntracks('Pakistan')
 
 def findforeignartists(country):
-    rawresults = sp.search(q='playlist:country', type='playlist', limit=2)
+    rawresults = sp.search(q=country + ' Music', type='playlist', limit=3)
     playlisturls = rawresults['playlists']['items']
 
     for i in range(0, len(playlisturls)):
         playliststochoosefrom.append(playlisturls[i]['id'])
 
     for playlist in playliststochoosefrom:
-        tracksfromplaylist = sp.playlist_tracks(playlist, limit=3)
+        tracksfromplaylist = sp.playlist_tracks(playlist, limit=3) #get limit number of tracks from playlist. 
+        tracksnarroweddown = tracksfromplaylist['items']
         for i in range(0, len(playliststochoosefrom)):
-            foreignartists.append(tracksfromplaylist['items'][i]['track']['artists']['id'])
-
+            foreignartists.append(tracksnarroweddown[i]['track']['artists'][0]['id'])
     return foreignartists
 
 
@@ -63,7 +63,7 @@ def getAlbums(name):
     print(album_uris)
     print(album_names)
 
-
+print(findforeignartists('Pakistan'))
 
 
 

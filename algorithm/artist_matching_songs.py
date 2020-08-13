@@ -22,7 +22,7 @@ def artistmatchingsongs(songid, artist):
     frgnarttracksids = [] #list of ids of 20 songs of foreign artist. 
     frgnarttrackvectors = []
     artistname = (sp.artist(artist))['name']
-    topforsongs = sp.search(q=artistname, limit=3, type='track')
+    topforsongs = sp.search(q=artistname, limit=20, type='track')
     tpforsngtrackinfo = topforsongs['tracks']
     infonarroweddown = tpforsngtrackinfo['items']
     for i in range(0, len(infonarroweddown)):
