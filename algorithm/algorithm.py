@@ -2,6 +2,8 @@
 Generates the list of recommended songs from foreign country artist given
 list of favorite songs provided by user.
 """
+from typing import Dict, Any
+
 from spotipy.oauth2 import SpotifyClientCredentials
 from collections import Counter
 import math
@@ -14,7 +16,7 @@ from find_artist import find_artist
 import numpy
 import sklearn
 from sklearn.metrics import mean_squared_error
-from foreigntracks import findforeigntracks
+from foreigntracks import findforeigntracks, findforeignartists
 
 
 #so here we need to implement artist_matching_songs, find_artist together to generate
@@ -25,6 +27,8 @@ client_credentials_manager = SpotifyClientCredentials(client_id, client_secret)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 foreigntracks = findforeigntracks('Pakistan')
+foreignartists = findforeignartists('Pakistan')
+simratios: Dict[foreignartists, find_artist]
 print('enter artist')
 
 artist = input()
@@ -36,6 +40,8 @@ trackresults = sp.artist_top_tracks(artist_uri)
 
 print(trackresults)
 
+for fa in foreignartists:
+    simratio = find_artist(artist, fa)
+    simratios[fa].append(simratio)
 
-
-#find_artist(inputsong, findforeigntracks('Pakistan'))
+return simratios
