@@ -14,7 +14,7 @@ import sklearn
 from sklearn.metrics import mean_squared_error
 
 
-def find_artist(songartist, foreignartist):
+def artist_similarity(songartist, foreignartist):
     songartistgenres = []
     foreignartistgenres = []
     indsongartgenres = []
