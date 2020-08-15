@@ -35,23 +35,25 @@ def findforeigntracks(country):
 
 #findforeigntracks('Pakistan')
 
-def findforeignartists(country):
-    rawresults = sp.search(q=country + ' Music', type='playlist', limit=3)
+def findForeignArtists(country):
+    rawresults = sp.search(q=country + ' Music', type='playlist', limit=8)
     playlisturls = rawresults['playlists']['items']
 
     for i in range(0, len(playlisturls)):
         playliststochoosefrom.append(playlisturls[i]['id'])
 
     for playlist in playliststochoosefrom:
-        tracksfromplaylist = sp.playlist_tracks(playlist, limit=3) #get limit number of tracks from playlist. 
+        tracksfromplaylist = sp.playlist_tracks(playlist, limit=5) #get limit number of tracks from playlist. 
         tracksnarroweddown = tracksfromplaylist['items']
-        for i in range(0, len(playliststochoosefrom)):
+        for i in range(0, len(tracksnarroweddown)):
             foreignartists.append(tracksnarroweddown[i]['track']['artists'][0]['id'])
-    return foreignartists
+        return foreignartists
 
+#returns artist Spotify URI given track URI
 def findArtist(track):
-    result = sp.search(q = 'track:' + name, type = 'track')
-    result
+    result = sp.track(track)
+    modifiedresult = result['album']['artists'][0]['external_urls']['spotify']
+    return modifiedresult
 
 
 def getAlbums(name):
@@ -67,7 +69,4 @@ def getAlbums(name):
     print(album_uris)
     print(album_names)
 
-print(findforeignartists('Pakistan'))
-
-
-
+print(findForeignArtists('Pakistan'))
