@@ -55,7 +55,7 @@ def artistmatchingsongs(songid, artist):
     for vector in frgnarttrackvectors:
         vectorindex = vectorindex + 1
         mse = mean_squared_error(usrsongvector, vector)
-        isless = mse < 0.99
+        isless = mse < 0.7
         if (isless == True):
             lowmseindices.append(vectorindex - 1)
     songidstoreturn = []
@@ -63,4 +63,4 @@ def artistmatchingsongs(songid, artist):
         songidstoreturn.append(frgnarttracksids[index])
     return songidstoreturn
 
-artistmatchingsongs('0xtIp0lgccN85GfGOekS5L', '6nyfDdTwCLGrbCFikT8PTK')
+#artistmatchingsongs('0xtIp0lgccN85GfGOekS5L', '6nyfDdTwCLGrbCFikT8PTK')

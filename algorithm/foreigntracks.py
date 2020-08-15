@@ -69,4 +69,8 @@ def getAlbums(name):
     print(album_uris)
     print(album_names)
 
+<<<<<<< HEAD
 print(findForeignArtists('Pakistan'))
+=======
+#print(findForeignArtists('Pakistan'))
+>>>>>>> master

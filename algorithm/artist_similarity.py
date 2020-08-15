@@ -14,7 +14,7 @@ import sklearn
 from sklearn.metrics import mean_squared_error
 
 
-def find_artist(songartist, foreignartist):
+def artist_similarity(songartist, foreignartist):
     songartistgenres = []
     foreignartistgenres = []
     indsongartgenres = []
@@ -43,9 +43,7 @@ def find_artist(songartist, foreignartist):
     singlewordforartgenres = [word for line in indforartgenres for word in line.split()]
     counterA = Counter(singlewordartgenres)
     counterB = Counter(singlewordforartgenres)
-
     similarityratio = cossim.counter_cosine_similarity(counterA, counterB) * 100
-    #print(similarityratio)
     return similarityratio
 
 #below: potential test case
