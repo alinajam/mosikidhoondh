@@ -47,7 +47,7 @@ def findForeignArtists(country):
         tracksnarroweddown = tracksfromplaylist['items']
         for i in range(0, len(tracksnarroweddown)):
             foreignartists.append(tracksnarroweddown[i]['track']['artists'][0]['id'])
-        return foreignartists
+    return foreignartists
 
 #returns artist Spotify URI given track URI
 def findArtist(track):
@@ -69,4 +69,4 @@ def getAlbums(name):
     print(album_uris)
     print(album_names)
 
-print(findForeignArtists('Pakistan'))
+#print(findForeignArtists('Pakistan'))

@@ -30,26 +30,32 @@ def algorithm(songlist, country):
         highratartistindices = []
         highratartists = []
         songartist = findArtist(song)
+        print("checkpoint 1")
         foreignartists = findForeignArtists(country) #a list of artist URIs from chosen country. 
         for foreignartist in foreignartists:
             simratio = artist_similarity(songartist, foreignartist)
             initialsimratios.append(simratio)
         index = 0
+        print("checkpoint")
         for ratio in initialsimratios:
             if ratio >= 0.6:
                 highratartistindices.append(index)
             index = index + 1
         for index in highratartistindices:
             highratartists.append(foreignartists[index])
+        print("high ratio artists: ")
+        print(highratartists)
         #at this point you have highratartists—the artists that have high sim
         #ratio with song artist. begin phase 2. 
         for artist in highratartists:
             someforeignids = artistmatchingsongs(song, artist)
             for id in someforeignids:
+                if id not in someforeignids:
                 foreignsongids.append(id)
     return foreignsongids            
 
-#One More Year, Fake Plastic Trees, Desperado, Woods
-testsonglist = ['5ozqshq2dtU7SYCpCBu0NE', '045sp2JToyTaaKyXkGejPy', '4mCf3vQf7z0Yseo0RxAi3V', '3Qa944OTMZkg8DHjET8JQv']   
+#URIs for One More Year (Tame Impala), Fake Plastic Trees (Radiohead), Desperado (Rihanna)
+testsonglist = ['5ozqshq2dtU7SYCpCBu0NE', '045sp2JToyTaaKyXkGejPy', '4mCf3vQf7z0Yseo0RxAi3V']   
 
-print(algorithm(testsonglist, 'Pakistan'))
+#UNCOMMENT LINE BELOW TO RUN TEST CASE WITH 'testsonglist' and Pakistan as country
+#print(algorithm(testsonglist, 'Pakistan'))
