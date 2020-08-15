@@ -16,6 +16,7 @@ foreignartists = []
 playliststochoosefrom = []
 country = ''
 name = ''
+track = ''
 
 def findforeigntracks(country):
     rawresults = sp.search(q=country + ' Music', type='playlist', limit=3)
@@ -48,6 +49,9 @@ def findforeignartists(country):
             foreignartists.append(tracksnarroweddown[i]['track']['artists'][0]['id'])
     return foreignartists
 
+def findArtist(track):
+    result = sp.search(q = 'track:' + name, type = 'track')
+    result
 
 
 def getAlbums(name):

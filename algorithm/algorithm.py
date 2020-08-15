@@ -40,8 +40,21 @@ trackresults = sp.artist_top_tracks(artist_uri)
 
 print(trackresults)
 
+print('pick a track')
+inputsong = input()
+results = sp.search(q = inputsong, type = 'track')
+results['tracks']['uri'][0]['artists']['uri']
+for t in results['tracks']:
+    if results.get(artist).get('uri') == artist_uri:
+        songid =
+
+
 for fa in foreignartists:
     simratio = find_artist(artist, fa)
     simratios[fa].append(simratio)
 
 print(simratios)
+
+for artist in simratios[fa]:
+    if simratios.get(artist) >= 0.6:
+        print(artistmatchingsongs(songid, artist))
